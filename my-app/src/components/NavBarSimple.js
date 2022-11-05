@@ -1,5 +1,5 @@
 import React from "react";
-import css from 'NavBarSimple.module.css';
+import css from "./css/NavBarSimple.module.css";
 
 class NavBarSimple extends React.Component {
     constructor() {
@@ -11,14 +11,14 @@ class NavBarSimple extends React.Component {
     };
 
     handleClick() {
-        this.setState({
-            intro: "Welcome back, user!",
-            buttonText: "Logout",
-        });
+        this.setState((prevState) => ({
+            intro: prevState.message === "Hello guest!" ? "Welcome back, user!" : "Hello guest!",
+            buttonText: prevState.buttonText === "Log out" ? "Log in" : "Log out",
+        }));
     }
     render() {
         return (
-            <div className = {css.NavBar}>
+            <div className={css.NavBar}>
                 <h1>My Gallery</h1>
                 <div>
                     <span>{this.state.intro}</span>
